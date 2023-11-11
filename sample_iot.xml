@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<TopAttribute xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <code>12345</code>
+  <label>2345567</label>
+  <number>0</number>
+  <version>1</version>
+  <metrics>
+    <myMetrics xsi:type="theseAreMyMetrics">
+      <name>ABC</channelName>
+      <attributes>
+        <a>0.3433965</a>
+        <b>1.45390737</b>
+        <c>0</c>
+        <d>0</d>
+        <e>89.02878</e>
+      </attributes>
+    </myMetrics>
+  </metrics>
+</TopAttribute>
