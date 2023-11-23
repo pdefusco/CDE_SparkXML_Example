@@ -36,7 +36,7 @@ cde resource upload --name files --local-path read_xml.py --local-path sample_io
 ##### Create a CDE Spark Job
 
 ```
-cde job create --name sparkxml --application-file read_xml.py --mount-1-resource files --type spark --packages --packages com.databricks:spark-xml_2.12:0.16.0
+cde job create --name sparkxml --application-file read_xml.py --mount-1-resource files --type spark --packages com.databricks:spark-xml_2.12:0.16.0
 ```
 
 ##### Run the CDE Spark Job
