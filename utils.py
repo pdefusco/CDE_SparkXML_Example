@@ -37,38 +37,25 @@
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
 
-from pyspark.sql import SparkSession
-from pyspark import SparkContext
-import pyspark.sql.functions as F
-from pyspark.sql.functions import col
-from utils import flatten_df
+"""
+Utils Methods can be imported from CDE Files Resource
+"""
 
-spark = SparkSession \
-        .builder \
-        .appName("XML Pull") \
-        .getOrCreate()
+def flatten_df(nested_df):
+    """
+    Method to flatten XML
+    Source: https://stackoverflow.com/questions/38753898/how-to-flatten-a-struct-in-a-spark-dataframe
+    Credits: Domenico Di Nicola - https://stackoverflow.com/users/11672595/domenico-di-nicola
+    """
 
-# Spark Session Config not needed because set in CDE via CLI
-#.config("spark.jars.packages","com.databricks:spark-xml_2.12:0.16.0")\
-
-## Read File from CDE Files Resource:
-
-df = spark.read.format('xml').options(rowTag='TopAttribute').load('sample_iot.xml')
-
-## Show original DF and Schema:
-
-df.show()
-
-df.printSchema()
-
-## Select nested columns from file:
-
-df.select("metrics.myMetrics.name").show()
-
-## Show flattened DF:
-
-flatten_df(df).show()
-
-## Show schema from flattened DF:
-
-flatten_df(df).printSchema()
+    stack = [((), nested_df)]
+    columns = []
+    while len(stack) > 0:
+        parents, df = stack.pop()
+        for column_name, column_type in df.dtypes:
+            if column_type[:6] == "struct":
+                projected_df = df.select(column_name + ".*")
+                stack.append((parents + (column_name,), projected_df))
+            else:
+                columns.append(col(".".join(parents + (column_name,))).alias("_".join(parents + (column_name,))))
+    return nested_df.select(columns)
