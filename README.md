@@ -14,7 +14,7 @@ Spark-XML is a library for parsing and querying XML data with Apache Spark, for 
 
 The following are required to reproduce the Demo in your CDE Virtual Cluster:
 
-* CDE Service version 1.19 and above
+* CDE Service version 1.19 and above with Spark version 3.x (Spark 2 is not compatible with SparkXML).
 * A Working installation of the CDE CLI. Instructions to install the CLI are provided [here](https://docs.cloudera.com/data-engineering/cloud/cli-access/topics/cde-cli.html).
 * A working installation of git in your local machine. Please clone this git repository and keep in mind all commands assume they are run in the project's main directory.
 * No code edits required but familiarity with Python, Spark and XML is recommended.
@@ -30,7 +30,7 @@ cde resource create --name files --type files
 ##### Upload Files to the Resource
 
 ```
-cde resource upload --name files --local-path read_xml.py --local-path sample_iot.xml --local-path utils.py
+cde resource upload --name files --local-path read_xml.py --local-path books.xml
 ```
 
 ##### Create a CDE Spark Job
@@ -44,6 +44,33 @@ cde job create --name sparkxml --application-file read_xml.py --mount-1-resource
 ```
 cde job run --name sparkxml
 ```
+````
++-----+--------------------+--------------------+---------------+-----+------------+--------------------+
+|  _id|              author|         description|          genre|price|publish_date|               title|
++-----+--------------------+--------------------+---------------+-----+------------+--------------------+
+|bk101|Gambardella, Matthew|\n\n\n         An...|       Computer|44.95|  2000-10-01|XML Developer's G...|
+|bk102|          Ralls, Kim|A former architec...|        Fantasy| 5.95|  2000-12-16|       Midnight Rain|
+|bk103|         Corets, Eva|After the collaps...|        Fantasy| 5.95|  2000-11-17|     Maeve Ascendant|
+|bk104|         Corets, Eva|In post-apocalyps...|        Fantasy| 5.95|  2001-03-10|     Oberon's Legacy|
+|bk105|         Corets, Eva|The two daughters...|        Fantasy| 5.95|  2001-09-10|  The Sundered Grail|
+|bk106|    Randall, Cynthia|When Carla meets ...|        Romance| 4.95|  2000-09-02|         Lover Birds|
+|bk107|      Thurman, Paula|A deep sea diver ...|        Romance| 4.95|  2000-11-02|       Splish Splash|
+|bk108|       Knorr, Stefan|An anthology of h...|         Horror| 4.95|  2000-12-06|     Creepy Crawlies|
+|bk109|        Kress, Peter|After an inadvert...|Science Fiction| 6.95|  2000-11-02|        Paradox Lost|
+|bk110|        O'Brien, Tim|Microsoft's .NET ...|       Computer|36.95|  2000-12-09|Microsoft .NET: T...|
+|bk111|        O'Brien, Tim|The Microsoft MSX...|       Computer|36.95|  2000-12-01|MSXML3: A Compreh...|
+|bk112|         Galos, Mike|Microsoft Visual ...|       Computer|49.95|  2001-04-16|Visual Studio 7: ...|
++-----+--------------------+--------------------+---------------+-----+------------+--------------------+
+
+root
+ |-- _id: string (nullable = true)
+ |-- author: string (nullable = true)
+ |-- description: string (nullable = true)
+ |-- genre: string (nullable = true)
+ |-- price: double (nullable = true)
+ |-- publish_date: string (nullable = true)
+ |-- title: string (nullable = true)
+````
 
 ## References
 
