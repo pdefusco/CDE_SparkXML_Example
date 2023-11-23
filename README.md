@@ -48,4 +48,5 @@ cde job run --name sparkxml
 ## References
 
 [Spark XML Package](https://github.com/databricks/spark-xml)
+
 [Cloudera Data Engineering Documentation](https://docs.cloudera.com/data-engineering/cloud/index.html)
