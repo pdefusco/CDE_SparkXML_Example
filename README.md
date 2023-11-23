@@ -2,7 +2,7 @@
 
 ### Objective
 
-This git repository supports the [Cloudera Community article on using Spark XML in Cloudera Data Engineering (CDE)](). You can run the following commands to parse XML files with Spark in Cloudera Data Engineering (CDE).
+This git repository supports the [Cloudera Community article on using Spark XML in Cloudera Data Engineering (CDE)](https://community.cloudera.com/t5/Community-Articles/Parsing-XML-s-in-Cloudera-Data-Engineering-with-the-Spark/ta-p/379451). You can run the following commands to parse XML files with Spark in Cloudera Data Engineering (CDE).
 
 CDE is the only cloud-native service purpose-built for enterprise data engineering teams. Building on Apache Spark, Data Engineering is an all-inclusive data engineering toolset that enables orchestration automation with Apache Airflow, advanced pipeline monitoring, visual troubleshooting, and comprehensive management tools to streamline ETL processes across enterprise analytics teams.
 
