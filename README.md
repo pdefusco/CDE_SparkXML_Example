@@ -30,7 +30,7 @@ cde resource create --name files --type files
 ##### Upload Files to the Resource
 
 ```
-cde resource upload --name --local-path read_xml.py --local-path sample_iot.xml --local-path utils.py
+cde resource upload --name files --local-path read_xml.py --local-path sample_iot.xml --local-path utils.py
 ```
 
 ##### Create a CDE Spark Job
